@@ -10,20 +10,33 @@ matrix:
   include:
   - env: TOXENV=py27-nocy
     python: 2.7
+    arch:
+      - ppc64le
+      - amd64
   - env: TOXENV=py36-nocy
     python: 3.6
+    arch:
+      - ppc64le
+      - amd64
   - env: TOXENV=py27-cy
     python: 2.7
+    arch:
+      - ppc64le
+      - amd64
   - env:
     - TOXENV=py36-cy
     - BUILD_DIST=true
     python: 3.6
+    arch:
+      - ppc64le
+      - amd64
 
 branches:
   only:
     - master
     - /^v\d+\.\d+.*$/
-
+before_install:
+  - sudo chown -Rvf $USER:$GROUP ~/.cache/pip/wheels
 install: pip install tox
 
 script: tox
